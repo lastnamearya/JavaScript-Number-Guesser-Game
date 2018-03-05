@@ -29,8 +29,10 @@ maxNum.textContent = max;
 game.addEventListener('mousedown', function(e){
   if(e.target.className === 'play-again'){
     window.location.reload();
+    history.go(0);
+    
   }
-})
+});
 
 // Listen for guess
 
