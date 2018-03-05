@@ -39,6 +39,7 @@ guessBtn.addEventListener('click', function(){
 
   // Check if won
   if(guess === winningNum) {
+    // Game over - WON
     // Disable Input
     guessInput.disabled = true;
     // Change border green
@@ -47,7 +48,30 @@ guessBtn.addEventListener('click', function(){
     setMessage(`${winningNum} is correct, YOU WIN!`, 'green');
 
   } else {
+    // Wrong Number
+    guessesLeft -= 1;
 
+    if(guessesLeft === 0){
+      // Game over - lost
+       
+      guessInput.disabled = true;
+      // Change border green
+      guessInput.style.borderColor = 'red';
+      // Set Message
+      setMessage(`Game Over, You Lost. The correct number was ${winningNum}`, 'red');
+    } else {
+      // Game Continues - answer wrong
+
+      // change border color
+      guessInput.style.borderColor = "red";
+
+      // Clear Input 
+      guessInput.value = "";
+
+      // Tell user its the wrong number
+      setMessage(`${guess} is not correct, ${guessesLeft} guesses left`, 
+      'red');
+    }
   }
 });
 
