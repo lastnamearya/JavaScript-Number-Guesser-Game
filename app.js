@@ -26,17 +26,33 @@ minNum.textContent = min;
 maxNum.textContent = max;
 
 // Listen for guess
+
 guessBtn.addEventListener('click', function(){
+
   let guess = parseInt(guessInput.value);
   console.log(guess);
 
   // Validate our Input
   if(isNaN(guess) || guess < min || guess > max){
-    setMessage(`Please enter a number between ${min} and ${max}`);
+    setMessage(`Please enter a number between ${min} and ${max}`, 'red');
+  }
+
+  // Check if won
+  if(guess === winningNum) {
+    // Disable Input
+    guessInput.disabled = true;
+    // Change border green
+    guessInput.style.borderColor = 'green';
+    // Set Message
+    setMessage(`${winningNum} is correct, YOU WIN!`, 'green');
+
+  } else {
+
   }
 });
 
 // setMessage
-function setMessage(msg){
+function setMessage(msg, color){
+  message.style.color = color;
   message.textContent = msg;
 }
